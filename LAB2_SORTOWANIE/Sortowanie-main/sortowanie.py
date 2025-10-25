@@ -1,3 +1,4 @@
+# sortowanie bąbelkowe
 def bubble_sort(lst):
     a = lst.copy()
     n = len(a)
@@ -7,7 +8,7 @@ def bubble_sort(lst):
                 a[j], a[j + 1] = a[j + 1], a[j]
     return a
 
-
+# sortowanie przez wybieranie
 def selection_sort(lst):
     a = lst.copy()
     n = len(a)
@@ -19,7 +20,7 @@ def selection_sort(lst):
         a[i], a[min_idx] = a[min_idx], a[i]
     return a
 
-
+# sortowanie przez wstawianie
 def insertion_sort(lst):
     a = lst.copy()
     for i in range(1, len(a)):
@@ -31,7 +32,7 @@ def insertion_sort(lst):
         a[j + 1] = key
     return a
 
-
+# sortowanie przez scalanie
 def merge_sort(lst):
     a = lst.copy()
     if len(a) <= 1:
@@ -43,7 +44,7 @@ def merge_sort(lst):
 
     return merge(left, right)
 
-
+# funkcja pomocnicza do scalania
 def merge(left, right):
     result = []
     i = j = 0
@@ -58,7 +59,7 @@ def merge(left, right):
     result.extend(right[j:])
     return result
 
-
+# sortowanie szybkie
 def quick_sort(lst):
     a = lst.copy()
     if len(a) <= 1:
