@@ -5,10 +5,10 @@
 def bubble_sort(lst):
     a = lst.copy()              # Tworzymy kopię listy, żeby nie modyfikować oryginału przekazanego przez użytkownika.
     n = len(a)                  # Zmienna n to długość listy.
-    for i in range(n):          # Zewnętrzna pętla — wykonuje się n razy (każde "przejście" listy).
-        for j in range(0, n - i - 1):   # Wewnętrzna pętla — za każdym razem krótsza o 1, bo ostatni element już posortowany.
+    for i in range(n):          # Zewnętrzna pętla - wykonuje się n razy (każde "przejście" listy).
+        for j in range(0, n - i - 1):   # Wewnętrzna pętla - za każdym razem krótsza o 1, bo ostatni element już posortowany.
             if a[j] > a[j + 1]:         # Jeśli bieżący element większy od następnego:
-                a[j], a[j + 1] = a[j + 1], a[j]  # Zamiana miejscami — „bąbelek” idzie w górę.
+                a[j], a[j + 1] = a[j + 1], a[j]  # Zamiana miejscami - „bąbelek” idzie w górę.
     return a                    # Zwracamy posortowaną listę.
 
 
@@ -54,7 +54,7 @@ def insertion_sort(lst):
 # Scalamy dwie posortowane listy w jedną.
 
 def merge_sort(lst):
-    a = lst.copy()              # Kopia listy — zachowujemy oryginał.
+    a = lst.copy()              # Kopia listy - zachowujemy oryginał.
     if len(a) <= 1:             # Jeśli lista ma 0 lub 1 element, to jest już posortowana.
         return a
 
@@ -93,9 +93,9 @@ def merge(left, right):
 
 def quick_sort(lst):
     a = lst.copy()              # Kopia wejściowej listy.
-    if len(a) <= 1:             # Jeśli lista ma 0 lub 1 element — jest już posortowana.
+    if len(a) <= 1:             # Jeśli lista ma 0 lub 1 element - jest już posortowana.
         return a
-    pivot = a[len(a) // 2]      # Wybieramy pivot — środkowy element listy.
+    pivot = a[len(a) // 2]      # Wybieramy pivot - środkowy element listy.
     left = [x for x in a if x < pivot]      # Wszystkie mniejsze od pivot.
     middle = [x for x in a if x == pivot]   # Wszystkie równe pivotowi.
     right = [x for x in a if x > pivot]     # Wszystkie większe od pivot.
