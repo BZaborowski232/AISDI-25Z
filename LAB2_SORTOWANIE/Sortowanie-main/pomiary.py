@@ -9,7 +9,7 @@ with open("pan-tadeusz.txt", "r", encoding="utf-8") as f:
 
 words = [w.lower() for w in words]  # konwersja na małe litery w razie czego dla spójności
 
-# W tym punkcie lista rozmiarów testowych
+# lista rozmiarów testowych
 sizes = list(range(1000, 10001, 1000))
 
 # wszystkie funkcje, jakie mam przetestować. Spróbuję to zrobić żeby było jak najmniej kodu, jak najmniejsza złożoność zgodnie z uwagami od pana

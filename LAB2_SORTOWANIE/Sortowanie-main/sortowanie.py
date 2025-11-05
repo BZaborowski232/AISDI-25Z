@@ -3,7 +3,7 @@
 # Największe elementy „wypływają” na koniec jak bąbelki w wodzie stąd nazwa
 
 def bubble_sort(lst):
-    a = lst.copy()                                  # Tworzymy kopię listy, żeby nie modyfikować oryginału przekazanego przez użytkownika.
+    a = lst.copy()                                  # Tworzymy kopię listy, żeby nie modyfikować oryginału.
     n = len(a)                                      # Zmienna n to długość listy.
     for i in range(n):                              # Zewnętrzna pętla - wykonuje się n razy (każde "przejście" listy).
         for j in range(0, n - i - 1):               # Wewnętrzna pętla - za każdym razem krótsza o 1, bo ostatni element już posortowany.
@@ -16,7 +16,7 @@ def bubble_sort(lst):
 # Dla każdej pozycji i:
 # znajdź najmniejszy element w reszcie listy (od i+1 do końca),
 # zamień go z elementem i.
-#Czyli „wybierasz” najmniejszy i ustawiasz go na początku
+# Czyli „wybierasz” najmniejszy i ustawiasz go na początku
 
 def selection_sort(lst):
     a = lst.copy()                              # Kopia wejściowej listy.
@@ -48,7 +48,7 @@ def insertion_sort(lst):
 
 
 # sortowanie przez scalanie:
-# To rekurencyjny algorytm dziel i zwyciężaj (divide and conquer):
+# Rekurencyjny algorytm dziel i zwyciężaj (divide and conquer):
 # Dzielimy listę na pół.
 # Sortujemy każdą połowę rekurencyjnie.
 # Scalamy dwie posortowane listy w jedną.
@@ -94,8 +94,8 @@ def merge(left, right):
 def quick_sort(lst):
     a = lst.copy()                              # Kopia wejściowej listy.
     if len(a) <= 1:                             # Jeśli lista ma 0 lub 1 element - jest już posortowana.
-        return a
-    pivot = a[len(a) // 2]                      # Wybieramy pivot - środkowy element listy.
+        return a                                
+    pivot = a[len(a) // 2]                      # Wybieramy pivot - środkowy element listy. jak liczba jest pażysta to bierze środkowy pierwszy z dwóch środkowych
     left = [x for x in a if x < pivot]          # Wszystkie mniejsze od pivot.
     middle = [x for x in a if x == pivot]       # Wszystkie równe pivotowi.
     right = [x for x in a if x > pivot]         # Wszystkie większe od pivot.
