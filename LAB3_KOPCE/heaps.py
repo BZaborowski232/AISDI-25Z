@@ -134,23 +134,34 @@ class SevenHeap(KHeap):
 # Sekcja testowa — uruchomi się tylko jeśli plik odpalasz ręcznie
 # (np. "python3 heaps.py")
 # Nie będzie się uruchamiać przy imporcie w benchmark.py
+def show_parent_child(heap):
+    """Wyświetla wszystkie relacje rodzic → dziecko w kopcu."""
+    d = heap.k       # arność kopca (2, 5 lub 7)
+    arr = heap.data  # lista przechowująca kopiec
+
+    print("Relacje rodzic → dziecko:")
+    for i in range(1, len(arr)):
+        parent_index = (i - 1) // d
+        print(f"{arr[parent_index]} → {arr[i]}")
 
 if __name__ == "__main__":
-    # Testowy kopiec binarny
-    h = BinaryHeap()
 
-    # Wstawiamy kilka elementów
-    h.insert(5)
-    h.insert(2)
-    h.insert(8)
-    h.insert(1)
-    h.insert(3)
+    data = [5, 2, 8, 1, 3, 10, 14]
 
-    print("Kopiec po wstawieniach:")
-    h.show()
+    heap_classes = [
+        ("BinaryHeap (2-arny)", BinaryHeap),
+        ("FiveHeap (5-arny)", FiveHeap),
+        ("SevenHeap (7-arny)", SevenHeap)
+    ]
 
-    # Usuwamy korzeń
-    print("\nUsunięty korzeń:", h.pop())
+    for name, HeapClass in heap_classes:
+        print(f"=== {name} ===")
 
-    print("\nKopiec po usunięciu:")
-    h.show()
+        h = HeapClass()					# tworzymy kopiec danego typu
+        for x in data:
+            h.insert(x)					# wstawiamy te same liczby
+
+        h.show()						# wyświetlamy strukturę kopca
+        show_parent_child(h)			# pokazujemy relacje rodzic → dziecko
+        print()							# pusty wiersz dla czytelności
+

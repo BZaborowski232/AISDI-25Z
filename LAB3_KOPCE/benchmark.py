@@ -42,11 +42,12 @@ for n in Ns:
     print(f"  → n = {n}")
 
     # --- BinaryHeap ---
-    h2 = BinaryHeap()
-    start = time.time()
-    for x in numbers[:n]:
-        h2.insert(x)
-    build_times_2.append(time.time() - start)
+    h2 = BinaryHeap()                           # Tworzymy nowy kopiec binarny (2-arny)
+    start = time.time()                         # Zapisujemy aktualny czas przed rozpoczęciem wstawiania
+    for x in numbers[:n]:                       # Wstawiamy pierwsze n elementów z listy numbers do kopca
+        h2.insert(x)                            # Każde wywołanie h2.insert(x) zachowuje własność kopca (min-heap)
+    build_times_2.append(time.time() - start)   # Obliczamy czas wstawiania wszystkich n elementów i zapisujemy go do listy build_times_2 dla późniejszego wykresu
+
 
     # --- FiveHeap ---
     h5 = FiveHeap()
