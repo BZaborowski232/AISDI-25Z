@@ -145,6 +145,6 @@ plt.savefig("pop_times.png", dpi=200)
 plt.clf()
 
 
-print("\n✅ Gotowe! Wygenerowano pliki:")
+print("\n Gotowe, wygenerowano pliki:")
 print("   • build_times.png")
 print("   • pop_times.png")
