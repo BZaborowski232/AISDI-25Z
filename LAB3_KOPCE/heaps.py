@@ -44,7 +44,7 @@ class KHeap:
 
     def pop(self):
         # Usunięcie szczytu kopca (korzenia)
-        if not self.data:  # jeśli kopiec pusty → nic nie usuwamy
+        if not self.data:  # jeśli kopiec pusty - nic nie usuwamy
             return None
 
         # Zapisujemy korzeń (który zwrócimy)
@@ -75,14 +75,14 @@ class KHeap:
             # Pobieramy listę rzeczywistych istniejących dzieci
             child_indices = [c for c in self.children(i) if c < n]
 
-            # Jeśli brak dzieci → kończymy
+            # Jeśli brak dzieci - kończymy
             if not child_indices:
                 break
 
             # Szukamy najmniejszego dziecka
             min_child = min(child_indices, key=lambda c: self.data[c])
 
-            # Jeśli dziecko jest mniejsze niż element → zamieniamy
+            # Jeśli dziecko jest mniejsze niż element - zamieniamy
             if self.data[min_child] < self.data[i]:
                 self.data[min_child], self.data[i] = self.data[i], self.data[min_child]
                 i = min_child  # schodzimy niżej
@@ -134,14 +134,14 @@ class SevenHeap(KHeap):
 # Sekcja testowa — uruchomi się tylko jeśli plik odpalasz ręcznie
 # Nie będzie się uruchamiać przy imporcie w benchmark.py
 def show_parent_child(heap):
-    """Wyświetla wszystkie relacje rodzic → dziecko w kopcu."""
+    """Wyświetla wszystkie relacje rodzic - dziecko w kopcu."""
     d = heap.k       # arność kopca (2, 5 lub 7)
     arr = heap.data  # lista przechowująca kopiec
 
-    print("Relacje rodzic → dziecko:")
+    print("Relacje rodzic - dziecko:")
     for i in range(1, len(arr)):
         parent_index = (i - 1) // d
-        print(f"{arr[parent_index]} → {arr[i]}")
+        print(f"{arr[parent_index]} - {arr[i]}")
 
 if __name__ == "__main__":
 
@@ -161,6 +161,6 @@ if __name__ == "__main__":
             h.insert(x)					# wstawiamy te same liczby
 
         h.show()						# wyświetlamy strukturę kopca
-        show_parent_child(h)			# pokazujemy relacje rodzic → dziecko
+        show_parent_child(h)			# pokazujemy relacje rodzic - dziecko
         print()							# pusty wiersz dla czytelności
 

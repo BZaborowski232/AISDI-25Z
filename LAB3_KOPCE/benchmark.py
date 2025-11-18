@@ -39,7 +39,7 @@ pop_times_7 = []
 print("⏳ Trwa pomiar budowania kopców...")
 
 for n in Ns:
-    print(f"  → n = {n}")
+    print(f"  - n = {n}")
 
     # --- BinaryHeap ---
     h2 = BinaryHeap()                           # Tworzymy nowy kopiec binarny (2-arny)
@@ -71,7 +71,7 @@ for n in Ns:
 print("\n⏳ Trwa pomiar usuwania elementów...")
 
 for n in Ns:
-    print(f"  → n = {n}")
+    print(f"  - n = {n}")
 
     # --- BinaryHeap ---
     h2 = BinaryHeap()
