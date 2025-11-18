@@ -68,7 +68,7 @@ for n in Ns:
 # POMIAR CZASU USUWANIA ELEMENTÓW
 # ===============================
 
-print("\n⏳ Trwa pomiar usuwania elementów...")
+print("\n Trwa pomiar usuwania elementów...")
 
 for n in Ns:
     print(f"  - n = {n}")

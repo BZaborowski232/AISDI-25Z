@@ -131,7 +131,7 @@ class SevenHeap(KHeap):
         super().__init__(7)
 
 
-# Sekcja testowa — uruchomi się tylko jeśli plik odpalasz ręcznie
+# Sekcja testowa - uruchomi się tylko jeśli plik odpalasz ręcznie
 # Nie będzie się uruchamiać przy imporcie w benchmark.py
 def show_parent_child(heap):
     """Wyświetla wszystkie relacje rodzic - dziecko w kopcu."""
