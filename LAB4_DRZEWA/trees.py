@@ -5,51 +5,57 @@
 
 from collections import deque
 
+# ------------------------------
+#           B S T   
+# ------------------------------
+
 class BSTNode:
     __slots__ = ("key", "left", "right")
     def __init__(self, key):
-        self.key = key
-        self.left = None
-        self.right = None
+        self.key = key          # wartość klucza (porównujemy wg niego)
+        self.left = None        # wskaźnik na lewe poddrzewo
+        self.right = None       # wskaźnik na prawe poddrzewo
 
 class BST:
     def __init__(self):
-        self.root = None
+        self.root = None        # korzeń drzewa
 
-    # wstawianie (iteracyjnie)
+    # wstawianie iteracyjne do BST
+    # zasada: mniejsze na lewo, większe/ równe na prawo
     def insert(self, key):
-        if self.root is None:
+        if self.root is None:   # przypadek gdy drzewo jest puste
             self.root = BSTNode(key)
             return
         cur = self.root
         while True:
-            if key < cur.key:
+            if key < cur.key:   # idziemy w lewo
                 if cur.left is None:
                     cur.left = BSTNode(key)
                     return
                 cur = cur.left
-            else:
+            else:               # idziemy w prawo (duplikaty też tu)
                 if cur.right is None:
                     cur.right = BSTNode(key)
                     return
                 cur = cur.right
 
-    # wyszukiwanie (zwraca True/False)
+    # wyszukiwanie wartości w drzewie
     def search(self, key):
         cur = self.root
         while cur:
             if key == cur.key:
-                return True
+                return True     # znaleziono!
             elif key < cur.key:
-                cur = cur.left
+                cur = cur.left  # szukamy w lewym poddrzewie
             else:
-                cur = cur.right
-        return False
+                cur = cur.right # szukamy w prawym poddrzewie
+        return False            # nie ma klucza w drzewie
 
-    # usuwanie elementu (standardowy algorytm)
+    # usuwanie elementu – wywołuje rekurencyjną pomocniczą funkcję
     def delete(self, key):
         self.root = self._delete_rec(self.root, key)
 
+    # klasyczny algorytm usuwania z BST
     def _delete_rec(self, node, key):
         if node is None:
             return None
@@ -58,18 +64,20 @@ class BST:
         elif key > node.key:
             node.right = self._delete_rec(node.right, key)
         else:
-            # node to delete
+            # przypadek: znaleziono node do usunięcia
+            # 1) brak dzieci
             if node.left is None and node.right is None:
                 return None
+            # 2) jedno dziecko
             if node.left is None:
                 return node.right
             if node.right is None:
                 return node.left
-            # two children: find successor (min in right subtree)
+            # 3) dwoje dzieci: bierzemy następnika (minimum z prawego poddrzewa)
             succ = node.right
             while succ.left:
                 succ = succ.left
-            node.key = succ.key
+            node.key = succ.key  # podmieniamy klucz na następnika
             node.right = self._delete_rec(node.right, succ.key)
         return node
 
@@ -113,13 +121,13 @@ class AVLNode:
         self.key = key
         self.left = None
         self.right = None
-        self.height = 1
+        self.height = 1          # każdy node startuje z wysokością 1
 
 class AVL:
     def __init__(self):
         self.root = None
 
-    # helper height
+    # pomocnicza: zwraca wysokość node (lub 0 gdy None)
     def _height(self, n):
         return n.height if n else 0
 
@@ -130,13 +138,15 @@ class AVL:
             return y
         x = y.left
         T2 = x.right
+        # obrót
         x.right = y
         y.left = T2
         # update heights
         y.height = 1 + max(self._height(y.left), self._height(y.right))
         x.height = 1 + max(self._height(x.left), self._height(x.right))
-        return x
+        return x                # NOWY KORZEŃ PODDRZEWA
 
+    # ROTACJA LEWOSTRONNA (RR case)
     def _rotate_left(self, x):
         # guard: cannot rotate left if x or x.right is None
         if x is None or x.right is None:
@@ -150,6 +160,8 @@ class AVL:
         y.height = 1 + max(self._height(y.left), self._height(y.right))
         return y
 
+    # obliczanie współczynnika zbalansowania:
+    # wysokość lewe - wysokość prawe
     def _balance_factor(self, n):
         return self._height(n.left) - self._height(n.right) if n else 0
 
@@ -172,6 +184,8 @@ class AVL:
 
         # update height and balance
         node.height = 1 + max(self._height(node.left), self._height(node.right))
+
+        # sprawdzamy balans
         bf = self._balance_factor(node)
 
         # Rebalance if necessary.
@@ -192,7 +206,7 @@ class AVL:
 
         return node
 
-    # search
+    # wyszukiwanie identycznie jak w BST
     def search(self, key):
         cur = self.root
         while cur:
