@@ -105,8 +105,7 @@ class BST:
             res.append(level)
         for lvl in res:
             print(lvl)
-            
-			
+
 
 class AVLNode:
     __slots__ = ("key", "left", "right", "height")
@@ -124,21 +123,29 @@ class AVL:
     def _height(self, n):
         return n.height if n else 0
 
-    # rotations
+    # safe rotations (guarded)
     def _rotate_right(self, y):
+        # guard: cannot rotate right if y or y.left is None
+        if y is None or y.left is None:
+            return y
         x = y.left
         T2 = x.right
         x.right = y
         y.left = T2
+        # update heights
         y.height = 1 + max(self._height(y.left), self._height(y.right))
         x.height = 1 + max(self._height(x.left), self._height(x.right))
         return x
 
     def _rotate_left(self, x):
+        # guard: cannot rotate left if x or x.right is None
+        if x is None or x.right is None:
+            return x
         y = x.right
         T2 = y.left
         y.left = x
         x.right = T2
+        # update heights
         x.height = 1 + max(self._height(x.left), self._height(x.right))
         y.height = 1 + max(self._height(y.left), self._height(y.right))
         return y
@@ -146,33 +153,40 @@ class AVL:
     def _balance_factor(self, n):
         return self._height(n.left) - self._height(n.right) if n else 0
 
-    # recursive insert with balancing
+    # recursive insert with balancing; IGNORE duplicate keys
     def insert(self, key):
         self.root = self._insert_rec(self.root, key)
 
     def _insert_rec(self, node, key):
         if node is None:
             return AVLNode(key)
+
+        # handle duplicates explicitly: ignore them
+        if key == node.key:
+            return node
+
         if key < node.key:
             node.left = self._insert_rec(node.left, key)
         else:
             node.right = self._insert_rec(node.right, key)
 
+        # update height and balance
         node.height = 1 + max(self._height(node.left), self._height(node.right))
         bf = self._balance_factor(node)
 
+        # Rebalance if necessary.
         # Left Left
-        if bf > 1 and key < node.left.key:
+        if bf > 1 and node.left is not None and key < node.left.key:
             return self._rotate_right(node)
-        # Right Right
-        if bf < -1 and key > node.right.key:
-            return self._rotate_left(node)
         # Left Right
-        if bf > 1 and key > node.left.key:
+        if bf > 1 and node.left is not None and key > node.left.key:
             node.left = self._rotate_left(node.left)
             return self._rotate_right(node)
+        # Right Right
+        if bf < -1 and node.right is not None and key > node.right.key:
+            return self._rotate_left(node)
         # Right Left
-        if bf < -1 and key < node.right.key:
+        if bf < -1 and node.right is not None and key < node.right.key:
             node.right = self._rotate_right(node.right)
             return self._rotate_left(node)
 
@@ -221,5 +235,3 @@ class AVL:
             res.append(level)
         for lvl in res:
             print(lvl)
-
-
