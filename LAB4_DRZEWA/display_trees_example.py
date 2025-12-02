@@ -1,14 +1,21 @@
-from trees import BST
-from trees import AVL
+from trees import BST, AVL
+from tree_visualizer import display_tree  # zmieniona nazwa modułu
 
-print("BST EXAMPLE")
+numbers = [10, 20, 30, 40, 50, 60, 70, 80, 90]
+
+
+print("===== BST EXAMPLE =====")
 bst = BST()
-for x in [10, 5, 20, 3, 7, 15, 30]:
+for x in numbers:
     bst.insert(x)
-bst.display_sideways()   # screenshot tego
 
-print("\nAVL EXAMPLE")
+print("\nStruktura drzewa BST:")
+display_tree(bst)   # ASCII-art wizualizacja
+
+print("\n===== AVL EXAMPLE =====")
 avl = AVL()
-for x in [10, 5, 20, 3, 7, 15, 30]:
+for x in numbers:
     avl.insert(x)
-avl.display_sideways()    # screenshot tego
+
+print("\nStruktura drzewa AVL:")
+display_tree(avl)   # ASCII-art wizualizacja
