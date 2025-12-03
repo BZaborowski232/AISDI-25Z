@@ -1,8 +1,9 @@
 from trees import BST, AVL
 from tree_visualizer import display_tree  # zmieniona nazwa modułu
+import random
 
-numbers = [10, 20, 30, 40, 50, 60, 70, 80, 90]
-
+#numbers = [10, 71, 12, 20, 30, 40, 50, 60, 70, 80, 90]
+numbers = random.sample(range(1, 101), 10)
 
 print("===== BST EXAMPLE =====")
 bst = BST()
