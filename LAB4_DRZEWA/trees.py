@@ -2,7 +2,7 @@
 # Węzeł drzewa BST
 # -------------------
 class BSTNode:
-    __slots__ = ("key", "left", "right")  # oszczędza pamięć
+    __slots__ = ("key", "left", "right")  
     def __init__(self, key):
         self.key = key      # wartość węzła
         self.left = None    # lewe dziecko
