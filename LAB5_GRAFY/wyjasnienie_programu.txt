@@ -1,0 +1,133 @@
+INSTRUKCJA PROGRAMU program.py
+
+Program służy do znalezienia najtańszej trasy pomiędzy dwoma polami oznaczonymi literą X na prostokątnej planszy. 
+Plansza jest wczytywana z pliku tekstowego przekazanego jako argument wywołania programu. 
+Do wyznaczenia trasy wykorzystywany jest algorytm Dijkstry.
+
+********************************************************************************************************************
+
+Funkcja: wczytaj_plansze(nazwa_pliku)
+
+    Opis:
+        Funkcja wczytuje planszę z pliku tekstowego.
+
+    Działanie:
+
+        otwiera plik o podanej nazwie,
+
+        czyta plik linia po linii,
+
+        usuwa znaki końca linii,
+
+        zamienia każdą linię na listę pojedynczych znaków.
+
+    Wynik:
+        Zwraca planszę w postaci listy list znaków.
+
+********************************************************************************************************************
+
+Funkcja: znajdz_x(plansza)
+
+    Opis:
+        Funkcja wyszukuje na planszy pola oznaczone literą X.
+
+    Działanie:
+
+        przegląda całą planszę,
+
+        zapisuje współrzędne wszystkich pól X,
+
+        sprawdza, czy znaleziono dokładnie dwa takie pola.
+
+    Wynik:
+        Zwraca dwie pozycje: punkt startowy i punkt końcowy.
+
+    Uwagi:
+        Jeżeli liczba pól X jest różna od 2, funkcja zgłasza błąd.
+
+********************************************************************************************************************
+
+Funkcja: koszt_wejscia(z, do, plansza)
+
+    Opis:
+        Funkcja oblicza koszt przejścia z jednego pola na drugie.
+
+    Działanie:
+
+        wejście na pole J ma koszt 0,
+
+        wyjście z pola J ma koszt 0,
+
+        wejście na pole z cyfrą ma koszt równy wartości tej cyfry,
+
+        w pozostałych przypadkach koszt wynosi 0.
+
+    Wynik:
+        Zwraca koszt przejścia jako liczbę całkowitą.
+
+********************************************************************************************************************
+
+Funkcja: dijkstra(plansza, start, meta)
+
+    Opis:
+        Funkcja znajduje najtańszą ścieżkę pomiędzy dwoma polami X przy użyciu algorytmu Dijkstry.
+
+    Działanie:
+
+        traktuje każde pole planszy jako wierzchołek grafu,
+
+        uwzględnia ruchy w czterech kierunkach: góra, dół, lewo, prawo,
+
+        korzysta z kolejki priorytetowej,
+
+        oblicza minimalny koszt dojścia do każdego pola,
+
+        zapamiętuje poprzednie pola w celu odtworzenia ścieżki.
+
+    Wynik:
+        Zwraca listę pól należących do najtańszej ścieżki oraz jej całkowity koszt.
+
+********************************************************************************************************************
+
+Funkcja: wypisz_sciezke(plansza, sciezka)
+
+    Opis:
+        Funkcja wypisuje planszę z ukrytymi polami, które nie należą do znalezionej ścieżki.
+
+    Działanie:
+
+        wypisuje tylko te pola, które leżą na trasie,
+
+        pomija pozostałe pola,
+
+        drukuje tylko niepuste wiersze.
+
+    Wynik:
+        Funkcja nie zwraca wartości, jedynie wypisuje wynik na ekran.
+
+********************************************************************************************************************
+
+Funkcja: main()
+
+    Opis:
+        Funkcja główna sterująca działaniem programu.
+
+    Działanie:
+
+        odczytuje nazwę pliku z argumentów wywołania programu,
+
+        wczytuje planszę z pliku,
+
+        wyszukuje pola startowe i końcowe X,
+
+        uruchamia algorytm Dijkstry,
+
+        wypisuje znalezioną ścieżkę oraz jej koszt.
+
+********************************************************************************************************************
+
+Uruchomienie programu
+
+    Program należy uruchomić z linii poleceń, podając ścieżkę do pliku z planszą:
+
+    python program.py plansze/plansza1.txt
