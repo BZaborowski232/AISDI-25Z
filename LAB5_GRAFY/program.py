@@ -6,9 +6,8 @@ import sys
 # Jest niezbędny do algorytmu Dijkstry
 import heapq
 
-# -----------------------------
 # Funkcja wczytująca planszę z pliku
-# -----------------------------
+
 def wczytaj_plansze(nazwa_pliku):
     # Otwieramy plik w trybie do odczytu
     with open(nazwa_pliku, "r") as f:
@@ -21,9 +20,8 @@ def wczytaj_plansze(nazwa_pliku):
     return plansza
 
 
-# -----------------------------
 # Funkcja wyszukująca dwa pola X
-# -----------------------------
+
 def znajdz_x(plansza):
     xs = []  # lista na współrzędne X
 
@@ -40,10 +38,9 @@ def znajdz_x(plansza):
     return xs[0], xs[1]
 
 
-# -----------------------------
 # Funkcja obliczająca koszt przejścia
 # z pola "z" na pole "do"
-# -----------------------------
+
 def koszt_wejscia(z, do, plansza):
     # Znak na polu docelowym
     znak_do = plansza[do[0]][do[1]]
@@ -67,9 +64,8 @@ def koszt_wejscia(z, do, plansza):
     return 0
 
 
-# -----------------------------
 # Algorytm Dijkstry
-# -----------------------------
+
 def dijkstra(plansza, start, meta):
     # Wysokość i szerokość planszy
     h = len(plansza)
@@ -122,9 +118,8 @@ def dijkstra(plansza, start, meta):
                         pq, (nowy_koszt, (nx, ny))
                     )
 
-    # -----------------------------
     # Odtwarzanie ścieżki
-    # -----------------------------
+
     sciezka = []
     p = meta
 
@@ -143,9 +138,8 @@ def dijkstra(plansza, start, meta):
     return sciezka, dist[meta]
 
 
-# -----------------------------
 # Wypisywanie tylko pól ścieżki
-# -----------------------------
+
 def wypisz_sciezke(plansza, sciezka):
     # Zamieniamy listę ścieżki na zbiór
     # (szybsze sprawdzanie czy pole jest na trasie)
@@ -166,9 +160,8 @@ def wypisz_sciezke(plansza, sciezka):
             print(linia)
 
 
-# -----------------------------
 # Funkcja główna programu
-# -----------------------------
+
 def main():
     # Sprawdzamy, czy podano nazwę pliku
     if len(sys.argv) != 2:
@@ -191,8 +184,7 @@ def main():
     print(f"\nKoszt: {koszt}")
 
 
-# -----------------------------
 # Uruchomienie programu
-# -----------------------------
+
 if __name__ == "__main__":
     main()
