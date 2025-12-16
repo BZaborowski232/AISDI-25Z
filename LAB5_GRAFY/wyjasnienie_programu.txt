@@ -1,3 +1,10 @@
+uruchomienie:
+python program.py plansze/plansza1
+python program.py plansze/plansza2
+python program.py plansze/plansza3
+
+********************************************************************************************************************
+
 INSTRUKCJA PROGRAMU program.py
 
 Program służy do znalezienia najtańszej trasy pomiędzy dwoma polami oznaczonymi literą X na prostokątnej planszy. 
