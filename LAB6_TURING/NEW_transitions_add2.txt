@@ -1,0 +1,12 @@
+init 1 1 R init
+init 0 0 R init
+init _ _ L add2_0
+add2_0 1 1 L add2_1
+add2_0 0 0 L add2_1
+add2_0 _ _ L add2_1
+add2_1 0 1 * halt   
+add2_1 1 0 L carry   
+add2_1 _ 1 * halt   
+carry 0 1 * halt
+carry 1 0 L carry
+carry _ 1 * halt

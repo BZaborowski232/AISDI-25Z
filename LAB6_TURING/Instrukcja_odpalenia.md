@@ -9,6 +9,6 @@ python3 program.py 101101 transitions_ends01.txt    --> sprawdzenie czy liczba k
 python3 program.py 01001 transitions_flip0to1.txt   --> zamiana wszystkich 0 na 1
 
 Nowe pliki inne niz te z instrukcji:
-python3 program.py 1011 NEW_transitions_double1.txt     --> podwaja liczbę binarną
 python3 program.py 101101 NEW_transitions_count1.txt    --> liczy ile jest jedynek na taśmie
 python3 program.py 01001 NEW_transitions_flip0to1.txt   --> zamiana wszystkich 0 na 1
+python3 program.py 100  NEW_transitions_add2.txt        --> dodanie 2
